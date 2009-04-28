@@ -1,5 +1,5 @@
-Flix Cloud HTML Form Sample
-=============================
+Flix Cloud Jobs HTML Form Sample
+===============================
 
 Author: John Luther john.luther@on2.com    
 Version: 1.0   
@@ -12,7 +12,7 @@ For more details about the Flix Cloud API visit
 ## Overview ##
 
 This is for everyone who's asked for a simple HTML for to test Flix Cloud.
-It was written before the Flix Cloud PHP client library sample was done.
+It was written before our [Flix Cloud PHP client library sample](http://github.com/flixcloud/flix_cloud-php/tree/master) was done.
 Maybe someday I'll update it (or perhaps someone out there would like to).
  
 As you will see, I'm not a professional programmer. This is just a sample,
