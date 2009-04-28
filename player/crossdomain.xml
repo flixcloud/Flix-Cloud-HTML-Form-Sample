@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">
+<cross-domain-policy>
+<site-control permitted-cross-domain-policies="master-only" />
+<!-- Place top level domain name -->
+<allow-access-from domain="dhmpgoc8yenlj.cloudfront.net" secure="false"/>
+<allow-access-from domain="dhmpgoc8yenlj.cloudfront.net" to-ports="80,443"/>
+<allow-http-request-headers-from domain="on2.com" headers="*" />
+<!-- use if you need access from subdomains. testing/www/staging.domain.com -->
+<allow-access-from domain="*.cloudfront.net" secure="false" />
+<allow-access-from domain="*.cloudfront.net" to-ports="80,443" />
+<allow-http-request-headers-from domain="*.on2.com" headers="*" />
+
+</cross-domain-policy>

@@ -1,0 +1,345 @@
+/* --------------------------------------------------------------
+ * //
+ * Reset.css
+ * * Resets default browser CSS styles.
+ * //
+ * Original by Erik Meyer:
+ * * meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+body {
+  line-height: 1;
+  color: #333;
+  background: white; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+blockquote, q {
+  quotes: "" ""; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: ""; }
+
+ul { list-style: none; }
+
+/* --------------------------------------------------------------
+ * //
+ * Typography.css
+ * * Sets some default typography.
+ * //
+ * Based on work by:
+ * * Nathan Borror     [playgroundblues.com]
+ * * Jeff Croft        [jeffcroft.com]
+ * * Christian Metts   [mintchaos.com]
+ * * Wilson Miner      [wilsonminer.com]
+ * //
+ * Read more about using a baseline here:
+ * * alistapart.com/articles/settingtypeontheweb */
+
+
+body {
+  font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+/* Unitless for proper inheritance */ */
+  line-height: 1.5; }
+
+/* This is where you set your desired font size. The line-height
+ * and vertical margins are automatically calculated from this.
+ * //
+ * You have to add an extra calculation here because of IE, so that
+ * all users may resize text manually in their browsers.
+ * //
+ * The top one is for IE: The percentage is of 16px (default IE text size)
+ * 10px is 62.5%, 12px is 75%, 13px is 81.25%, and so forth).
+ * The second value is what all other browsers see (the wanted font size). */
+
+/* IE */
+
+body {
+  font-size: 75%; }
+
+/* Other browsers */
+
+html > body {
+  font-size: 12; }
+
+/* Headings */
+
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+  color: #111;
+ }
+
+h1 {
+  font-size: 3em; }
+
+h2 {
+  font-size: 2em; }
+
+h3 {
+  font-size: 1.5em;
+  line-height: 2; }
+
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  font-weight: bold; }
+
+h5 {
+  font-size: 1em;
+  font-weight: bold; }
+
+h6 {
+  font-size: 1em; }
+
+/* Text elements */
+
+
+p {
+  margin: 0 0 1em 0; }
+  p .last {
+    margin-bottom: 0; }
+  p img {
+    float: left;
+    margin: 0 .5em;
+    padding: 0;
+    position: relative;
+    top:3px;
+/* Use this if the image is at the top of the <p>. */ }
+    p img.top {
+      margin-top: 0; }
+
+ul, ol {
+  margin: 0 0 1.5em 1.5em; }
+
+ol {
+  list-style-type: decimal; }
+
+dl {
+  margin: 1.5em 0; }
+  dl dt {
+    font-weight: bold; }
+
+a {
+  color: #3398cc;
+  text-decoration: underline;
+  outline: none; }
+  a:hover {
+    color: #000; }
+
+blockquote {
+  margin: 1.5em 0 1.5em 1.5em;
+  color: #666;
+  font-style: italic; }
+
+strong {
+  font-weight: bold; }
+
+em {
+  font-style: italic; }
+
+pre {
+  margin-bottom: 1.3em;
+  background: #eee;
+  border: 0.1em solid #ddd;
+  padding: 1.5em; }
+
+code {
+  font: 0.9em Monaco, monospace; }
+
+/* Use this to create a horizontal ruler across a column. */
+
+hr {
+  background: #B2CCFF;
+  color: #B2CCFF;
+  clear: both;
+  float: none;
+  width: 100%;
+  height: 0.1em;
+  margin: 0 0 1.4em 0;
+  border: none; }
+
+/* IE6 fix */
+
+* html hr {
+  margin: 0 0 1.2em 0; }
+
+  
+/* Forms */
+
+
+label {
+  font-weight: bold; }
+
+textarea {
+  height: 180px;
+  width: 300px; }
+
+/* Some default classes */
+
+
+p.small {
+  font-size: 0.8em;
+  margin-bottom: 1.875em;
+  line-height: 1.875em; }
+
+p.large {
+  font-size: 1.2em;
+  line-height: 2.5em; }
+
+p.quiet {
+  color: #666; }
+
+.hide {
+  display: none; }
+
+/* Extra fancy typography */
+/* Reduced size type with incremental leading
+ * (http://www.markboulton.co.uk/journal/comments/incremental_leading/)
+ * //
+ * This could be used for side notes. For smaller type, you don't necessarily want to
+ * follow the 1.5x vertical rhythm -- the line-height is too much.
+ * //
+ * Using this class, it reduces your font size and line-height so that for
+ * every four lines of normal sized type, there is five lines of the sidenote. eg:
+ * //
+ * New type size in em's:
+ * 10px (wanted side note size) / 12px (existing base size) = 0.8333 (new type size in ems)
+ * //
+ * New line-height value:
+ * 12px x 1.5 = 18px (old line-height)
+ * 18px x 4 = 72px
+ * 60px / 5 = 14.4px (new line height)
+ * 14.4px / 10px = 1.44 (new line height in em's) */
+
+p.incr, .incr p {
+/* font size 10px */
+  font-size: 0.83333em;
+  line-height: 1.44em;
+/* Still 1.5 x normal font size as baseline */
+  margin-bottom: 1.8em; }
+
+html, body { margin: 0; height: 100%; background: #f2f2f2; }
+ul, ol { margin: 0; }
+h2, h3, h4 { color: #7FBA00; }
+h2 { font-size: 140%; margin-bottom: 4px; }
+h3 { font-size: 115%; margin-bottom: 4px; }
+h4 { font-size: 100%; padding-bottom: 3px; border-bottom: 1px solid #ccc; margin-bottom: 10px; }
+
+a { color: #F27923; }
+h2, h3, h4 { color: #F27923; }
+/* Header
+---------------------------------------------------------*/
+
+#header {border-bottom:2px solid white; position:relative;}
+#logo { background: transparent url('/images/logo.png') no-repeat 0 0; width: 105px; height: 114px; position: absolute}
+#logo a { display: block; height: 100%; width: 100%; }
+#logo span { display: none; }
+
+/* Layout
+---------------------------------------------------------*/
+#wrapper { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -53px; min-width: 800px; max-width: 1200px; background: white; }
+#push { height: 50px; }
+#footer { padding: 15px 25px 0; background: #bbb; height: 38px; color: #eee; }
+#footer a { color: #eee; }
+.container:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#main { background: transparent url('/images/header_shadow.jpg') repeat-x 0 0; padding: 25px; }
+#main.with_sidebar { padding-right: 295px; }
+#main #content { width: 100%; float: left; }
+#main #sidebar { width: 250px; float: right; margin-right: -270px; margin-left: 20px; }
+
+/* Flash
+---------------------------------------------------------*/
+#main.with_sidebar #flash { margin-right: -275px; }
+#flash { line-height: 120%; margin-bottom: 10px; }
+#flash .flash { background-color: #000; color: #fff; padding: 5px; margin-bottom: 5px; }
+#flash .flash.notice { background-color: #318BA6; }
+#flash .flash.error { background-color: #A62A2C; }
+
+/* Errors
+---------------------------------------------------------*/
+#errorExplanation { margin: 15px 0; padding: 10px; border: 1px solid #A62A2C; background: #f2f2f2; }
+#errorExplanation h2 { color: #A62A2C; font-size: 120%; margin-bottom: 10px; }
+#errorExplanation ul { margin: -10px 0 0 15px; }
+#errorExplanation li { list-style-type: square; }
+
+
+/* Forms
+---------------------------------------------------------*/
+form li, form li span { display: block; }
+form li { margin: 15px 0; }
+form li span { margin: 4px 0; }
+form li .note { font-size: 90%; color: #777; font-style: italic; }
+form li.text-field input,
+form li.password-field input,
+form li.textarea-field textarea,
+form li.select-field select { width: 300px; }
+form li.check-box-field input { vertical-align: middle; }
+form li.check-box-field .fieldWithErrors { display: inline; }
+form li.narrow input,
+form li.narrow textarea,
+form li.narrow select { width: 180px; }
+form li.wide input,
+form li.wide textarea,
+form li.wide select { width: 480px; }
+form li.max input,
+form li.max textarea,
+form li.max select { width: 100%; }
+.select_from_button select { width: 100%; margin-bottom: 5px; }
+
+/* Buttons
+---------------------------------------------------------*/
+a.button              { background: transparent url('/images/button_a.gif') no-repeat scroll top right; color: #444; display: block; 
+                        float: left; font: normal 12px arial, sans-serif; height: 24px; margin: 0px 10px 6px 0; padding: 0 18px 0 0; text-decoration: none; border: 0; }
+a.button span         { background: transparent url('/images/button_span.gif') top left no-repeat; display: block; line-height: 24px; padding: 0px 0 0px 18px; }
+a.button:active       { background-position: bottom right; color: #000; outline: none; }
+a.button:active span  { background-position: bottom left; }
+button.button         { float: left; margin: 0px 10px 6px 0; outline: none; border: 1px solid #ccc; height: 24px; padding: 0px 15px 0px 15px; 
+                        background: #ddd url('/images/button-background.png') repeat-x scroll top left;
+                        font-size: 12px; line-height: 20px; font-family: Arial, sans-serif; font-weight: normal; color: #444; text-decoration: none;
+                        cursor: pointer; border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; -webkit-box-shadow: 1px 1px 2px #777; }
+button.button:active  { background-position: bottom left; background-color: #aaa; border-color: #aaa; }
+button.button:focus   { outline: none; }
+
+/* Misc
+---------------------------------------------------------*/
+.view_all { margin-bottom: 20px; padding: 3px 5px 5px; border-top: 1px dotted #ccc; display: block; text-align: right; }
+.view_all:hover { background: #f3f3f3; }
+.clear:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.overflow { overflow: auto; }
+.action { cursor: pointer; }
+.error { color: red; }
+
+
+/* BARE LAYOUT
+=========================================================*/
+#bare #wrapper { width: 400px; background: transparent; margin: 30px auto; min-width: 400px; max-width: inherit; min-height: 0; border: 10px solid #e2e2e2; }
+#bare #main { background: white; }
+#bare #header { background: #bfc2c7; height: 150px; }
+#bare #header #logo { top: 20px; left:50%; margin-left:-52.5px;}
+#bare #footer { height: auto; background: transparent; text-align: center; color: #999; padding: 0; }
+#bare #footer a { color: #999; }
+#bare form li.max input { width: 96%; }
+
+
+/* SYSTEM LAYOUT
+---------------------------------------------------------*/
+#system #wrapper { min-width: 950px; max-width: 1600px; }
+
+

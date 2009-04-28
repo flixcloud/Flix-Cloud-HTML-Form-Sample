@@ -1,0 +1,460 @@
+FormBuilder Documentation
+=========================
+
+author:	Jonathan Nicol (f6design.com, f6design.com/journal)
+version: 1.3
+date: 07 July 2007
+
+Contents
+--------
+
+1 - About FormBuilder
+2 - Feature list
+3 - Requirements
+4 - Setting up FormBuilder
+        4.1 - Installation
+        4.2 - Class constructor
+5 - Creating the form
+        5.1 - Fieldsets
+        5.2 - Fields
+        5.3 - Field parameters: Mandatory
+        5.4 - Field parameters: Optional
+        5.5 - Field parameters: textbox
+        5.6 - Field parameters: password
+        5.7 - Field parameters: textbox
+        5.8 - Field parameters: radio
+        5.9 - Field parameters: checkbox
+        5.10 - Field parameters: hidden
+6 - Rendering the form
+7 - Error messages
+8 - Custom validation
+9 - Form processing
+		9.1 - Sending an email
+10 - Thanks message
+11 - Hiding the form on successful submission
+12 - Skinning the form
+13 - Feedback
+        
+
+1 - About FormBuilder
+---------------------
+
+FormBuilder is designed to make the task of building and validating HTML forms simpler.
+
+FormBuilder uses validaForms by Erick Vavretchek for form validation. Please see http://www.phpclasses.org/browse/package/1698.html if you wish to learn more about this excellent PHP class.
+
+
+2 - Feature list
+----------------
+
+FormBuilder is designed to do pretty much everything you might want to achieve with a typical HTML form:
+
+    * Create HTML forms by entering a few PHP values
+    * Generates XHTML 1.0 Strict compliant markup
+    * Fully skinnable via CSS
+    * Rigorous and flexible form validation on a per-field basis
+    * Displays easy to understand error messages to the user
+    * Highlights required fields and fields that are in error
+    * Displays a ëthanksí message once form is successfully processed
+    * Hide or show HTML content based on whether the form was successfully submitted
+    * Ability to add your own custom form validation after FormBuilder has completed itís own validation pass
+    * Protect against PHP header injection
+    * Defaults to fully semantic markup, with an option to use non-semantic (but easier to syle) markup
+
+
+3 - Requirements
+----------------
+
+FormBuilder must be run on a web server with PHP 4+ running. A basic understanding of PHP is helpful, but following the examples provided here you should be able to make do without. CSS knowledge is required if you want to change the appearance of the form.
+
+
+4 - Setting up FormBuilder
+--------------------------
+
+You should be able to figure out how to use FormBuilder by looking at the PHP source of the example file provided with the FormBuilder package (index.php), but the instructions provided here will give you a better undestanding of how it all fits together.
+
+
+4.1 - Installation
+------------------
+
+Copy the folder 'formbuilder' to a location on your web server.
+
+In the php document that will contain your form, write the following php snippet. (It should go higher on the page than where you intend the form and its error messages to be displayed. I recommend putting it above any HTML):
+
+<?php
+include('formbuilder/FormBuilder.php');
+?>
+
+And somewhere inside the <head> tag of your HTML include the CSS file that determines how the from will be styled:
+
+<link rel="StyleSheet" href="formbuilder/formbuilder.css" type="text/css" media="screen" />
+
+This CSS stylesheet defines how your form will look. You can edit the stylesheet and alter the look of the form to suit your needs.
+
+Note that the directory paths shown in this example may vary depending on your server's folder structure.
+
+
+4.2 - Class constructor
+-----------------------
+
+Now you are ready create an instance of the FormBuilder class. Add the following code to your php snippet, underneath the include:
+
+$contactForm = new FormBuilder('contactform','Send Email','Please complete the following form to send me an email.');
+
+There are five parameters in the class constructor:
+
+1. formname (string) [required]:
+The name of your form. By naming your forms, you can have more than one per page. Although I have not tested this too rigorously, so if you want to have multiple forms please proceed with caution.
+
+2. btnlabel (string) [required]:
+The label that will appear on the form's submit button
+
+3.formintro (string) [optional]:
+A message that will appear at the top of the form. Use this for instructions to the user, telling them how to complete the form.
+
+The following two parameters are designed to make it easier to style 'pretty' forms:
+
+4. usePseudoLegends (boolean) [optional]:
+If set to true, <legend> tags will be replaced with <h3> tags. The legend element is notoriously difficult to style using CSS, so to achieve consistent complex styling across browsers, an h3 will make your life much easier. Note that while it is open to interpretation whether an h3 is semantic, it certainly deviates from conventional form layout. This parameter defaults to false.
+
+5. showDividers (boolean) [optional]:
+If set to true, an additional empty <dd> tag will be placed after each form field. This empty dd can be styled as a visual divider between form elements. Depending on the visual layout you choose form your form this effect might be very difficult to achieve otherwise. Note that this empty <dd> is non semantic, although it still validates. This parameter defaults to false.
+
+Please note that the variable name you give your class instance (in this example $contactForm) can be whatever you want.
+
+
+5 - Creating the form
+---------------------
+
+We are now ready to define the fields that will make up our form.
+
+There are two types of content that the form may contain: fields, and fieldsets. I'm going to assume that you know enough about HTML to understand both of those terms.
+
+The basic procedure is to sequentially call a FormBuilder class function for each fieldset and form field we wish to create.
+
+
+5.1 - Fieldsets
+---------------
+
+To add a fieldset, use the following class function:
+
+$contactForm->addFieldSet('Personal details');
+
+The parameter is the label for the fieldset. All fields defined after the fieldset will be contained within the new fieldset, until another fieldset is specified, or until it is closed using:
+
+$contactForm->closeFieldSet();
+
+Note that is is NOT necessary to explicitly close a fieldset before starting another one.
+
+
+5.2 - Fields
+------------
+
+Creating form fields is a little more complex, because we need to specify a number of parameters. The basic procedure is:
+
+$contactForm->addField(array(
+		'id' => 'name',
+		'type' => 'textbox',
+		'label' => 'Name',
+		'required' => true,
+		'instructions' => 'These are some instructions',
+		'maxlength' => 100,
+		'headerinjectioncheck' => 'full'
+	)
+);
+
+You will notice that each parameter appears on a seperate line, in the manner:
+
+'parameter' => value,
+
+
+5.3 - Field parameters: Mandatory
+---------------------------------
+
+All fields must have 3 parameters specified:
+
+id (string):
+The field name. This is the variable that will hold the field value when the form is submitted.
+
+type (string):
+The field type. Possible values are:
+- 'textbox'
+- 'textarea'
+- 'password'
+- 'select'
+- 'checkbox'
+- 'radio'
+- 'hidden'
+
+label (string):
+The label that will appear next to the form field
+
+
+5.4 - Field parameters: Optional
+--------------------------------
+
+In addition to the 3 madatory fields, all field types (with the exception of hidden fileds) may have the following optional parameters:
+
+required (boolean):
+Determines if the field must be completed by the user. Possible values are:
+- true
+- false
+Defaults to false if not set.
+
+instructions (string):
+Instructions to help the user complete a form field. These appear after the form field on the page.
+
+headerinjectioncheck (string)
+Specifies if the field should be validated for PHP Header injection attacks. Possible values are:
+- 'full'
+- 'light'
+Header injection checks should be made on content that is going to be emailed after the form is completed, for example a 'contact us' form. Full checking should ONLY be used on fields that are going to appear in the header of an email. Light checking can optionally be performed on other fields, to stop the email's recipient receiving spammer's 'probe' emails. Please see my blog post on the topic: http://f6design.com/journal/2006/12/09/securing-php-contact-forms/
+
+
+5.5 - Field parameters: textbox
+-------------------------------
+
+A textbox is a standard single line HTML <input>
+
+validationtype (string) [optional]:
+The rules that will be applied to the submitted content during validation. Possible values are:
+- 'alpha' (The value must be letters only)
+- 'numeric' (The value must be numbers only)
+- 'alphanumeric' (The value must be only numbers and/or letters)
+- 'email' (The value must be a correctly formatted email address)
+- null (The default value. Any characters will be allowed.)
+
+maxlength (Number) [optional]:
+The maximum number of characters the user is allowed to enter.
+
+minlength (Number) [optional]:
+The minimum number of characters the user must enter.
+
+
+5.6 - Field parameters: textarea
+---------------------------------
+
+A textarea is a standard multi line HTML <textarea>
+
+cols (Number) [required]: 
+How wide the textarea should be, measured in cahracters of text. This value can be over-ridden using CSS if need be, but is required for validation purposes.
+
+rows (Number) [required]: 
+How tall the textarea should be, measured in lines of text. This value can be over-ridden using CSS if need be, but is required for validation purposes.
+
+validationtype (string) [optional]:
+The rules that will be applied to the submitted content during validation. Possible values are:
+- 'alpha' (The value must be letters only)
+- 'numeric' (The value must be numbers only)
+- 'alphanumeric' (The value must be only numbers and/or letters)
+- 'email' (The value must be a correctly formatted email address)
+- null (The default value. Any characters will be allowed.)
+
+maxlength (Number) [optional]:
+The maximum number of characters the user is allowed to enter.
+
+minlength (Number) [optional]:
+The minimum number of characters the user must enter.
+
+
+5.7 - Field parameters: password
+-------------------------------
+
+A password is similar to a regular HTML textfield, but the user input is replaced with asterisks to hide it from prying eyes. 
+
+validationtype (string) [optional]:
+The rules that will be applied to the submitted content during validation. Possible values are:
+- 'alpha' (The value must be letters only)
+- 'numeric' (The value must be numbers only)
+- 'alphanumeric' (The value must be only numbers and/or letters)
+- 'email' (The value must be a correctly formatted email address)
+- null (The default value. Any characters will be allowed.)
+
+maxlength (Number) [optional]:
+The maximum number of characters the user is allowed to enter.
+
+minlength (Number) [optional]:
+The minimum number of characters the user must enter.
+
+
+5.8 - Field parameters: radio
+------------------------------
+
+A radio is a group of HTML radio buttons.
+
+radiolabels (array) [required]:
+An array of string values containing the labels of the radio buttons, ie:
+'radiolabels' => array('Yes','No'),
+
+radiovalues (array) [required]:
+An array of string values containing the values that will be submitted for processing depending which radio button is selected, ie:
+'radiovalues' => array('y','n'),
+
+defaultvalue (string) [optional]:
+This string value should correspond to one of the values set in the radiovalues array, and specifies which radio button will be pre-selected when the form first displays.
+
+
+5.9 - Field parameters: checkbox
+---------------------------------
+
+A checkbox is a group of HTML checkboxes. Note that if more than one checkbox is selected, the value that is submitted for processing will be a comma seperated list, such as 'Music,Computers,Sport'
+
+checkboxlabels (array) [required]:
+An array of string values containing the labels of the checkboxes, ie:
+'checkboxlabels' => array('Music','Computers','Movies','Sport','Art'),
+
+checkboxvalues (array) [required]:
+An array of string values containing the values that will be submitted for processing depending which checkboxes are checked, ie:
+'checkboxvalues' => array('Music','Computers','Movies','Sport','Art'),
+
+defaultvalue (array) [optional]:
+This array of string values specifies which checkboxes will be pre-selected when the form first displays.
+'checkboxchecked' => array(true,true,true,true,true),
+
+
+5.10 - Field parameters: hidden
+---------------------------------
+
+A hidden field is not visible to the user, but is useful for submitting additional information along with the form. For example a hidden field might be used to pass information about the user's browser or computer configuration, which would be collected behind the scenes rather than supplied by the user. 
+
+Hidden fields have no special parameters, only requiring the standard 'name', 'type' and 'value' parameters.
+
+
+6 - Rendering the form
+----------------------
+
+To display the form on the HTML page, just include the following code snippet in your php document:
+
+<?php
+$contactForm->renderForm();
+?>
+
+
+7 - Error messages
+------------------
+
+Assuming that one or more of your form fields is required, your form will be validated. During validation each required field is checked according to the critera you defined. If errors are found in the user supplied data then a series of error messages are generated.
+
+To display these error messages to the user, just include the following code snippet in your php document in the location where you wish the messages to appear:
+
+<?php
+$contactForm->renderErrorMessage();
+?>
+
+
+8 - Custom validation
+---------------------
+
+If you need to perform more complex validation, you can do this after the form has been successfully validated by FormBuilder. This should be performed before the spot in your document where the error message is displayed. I would recommend doing it immediately after defining the form fields. Make sure you perform your custom validation PRIOR to processing the form results (see section 9 below).
+
+To perform custom validation, all you need to do is check first whether the form has been submitted, then perform any custom validation.
+
+<?php
+if($contactForm->isSubmitted()){
+	// You may also want to do additional form validation of your own, after FormBuilder has finished.
+	// If so, you can force error messages to be displayed to the user as such:
+	$contactForm->forceErrorMessage('name',"Hey! I'm sure you did something BAD with the Name field!");
+}
+?>
+
+You will notice that the function forceErrorMessage takes two parameters:
+- field id: This is the id of the fields that will be highlighted as having the error.
+- error message: The error message that will be displayed to the user.
+
+
+9 - Form processing
+-------------------
+
+You can check if the form has been successfully completed by calling the function formSuccess:
+
+<?php
+if($contactForm->formSuccess()){
+	// Put your form submission logic here. ie: send an email, make a database insert etc.
+	// Access variables in the usual manner, ie: $_POST[field_id]
+}
+?>
+
+You can then use PHP to format and submit the form variables in any manner you wish. It is beyond the scope of this document to explain how to process form variables, but take a look at http://www.w3schools.com/php/php_forms.asp to get started.
+
+
+9.1 - Sending an email
+----------------------
+
+It is easy to have FormBuilder automatically email the form variables to any pre-defined email address:
+
+<?php
+if($contactForm->formSuccess()){
+	$contactForm->emailResults(
+		'you@yourdomain.com',
+		'sender@sender.com',
+		'Sender Name',
+		'Pixel Acres feedback',
+		'The following is an email sent by a visitor to Pixel Acres:'
+	);
+}
+?>
+
+The emailResults function takes 5 mandatory parameters. The parameters are:
+
+- Recipient Address (string): The email address you want the email sent to. Should ALWAYS be hardcoded, rather than derived from a user submitted variable.
+- Sender's email (string): The email address that will appear in the email's From and Reply headers. Can be a user-submitted variable from the form, accessed in the manner: $_POST['email'] (where 'email' is the form field id)
+- Sender's name (string): The name that will appear in the email's From and Reply headers. Can be a user-submitted variable from the form, accessed in the manner: $_POST['name'] (where 'name' is the form field id)
+- Subject (string): The email subject. Can be a user-submitted variable from the form, in the manner: $_POST['subject'] (where 'subject' is the form field id)
+- Message Intro (string): This is an introductory message which will appear in body of the email.
+
+An important note about header injection: It is vital to check any user-submitted variables that will appear in the email header for signs of a PHP header injection attack. Please see section 5.4 (Field parameters: Optional) for further details about the headerinjectioncheck parameter.
+
+
+10 - Thanks message
+-------------------
+
+When a form is submitted you can display a confirmation message to the user by calling the renderThanks function:
+
+<?php
+$contactForm->renderThanks('Thanks!','Your form was submitted successfully',true,'index.php','Ah');
+?>
+
+The parameters are:
+
+- Heading (string): The heading for the thank you message. Default value is null, which renders "Thank you"
+- Message (string): The thank you message. Default value is null, which renders "Your submission was successfully processed"
+- Show link (boolean): You might like a link to appear after the message. Default value is false.
+- Link URL (string): The associated URL for the link. Default value is the same page as the form is on.
+- Link text (string): Default value is "Back"
+
+
+11 - Hiding the form on successful submission
+---------------------------------------------
+
+To avoid confusing your users, it can be useful to hide the form once it has been successfully submitted. This makes it really obvious to the user that the completed the form correctly.
+
+This can be easily achieved using the formSuccess function, just by wrapping it around your renderForm function call:
+
+<?php
+if(!$contactForm->formSuccess()){
+	$contactForm->renderForm();
+}
+?>
+
+The same logic can be applied to any other content you want to show/hide depending on whether the form was successfully submitted.
+
+ 
+12 - Skinning the form
+----------------------
+
+Forms created by FormBuilder have a default look, but this can be easily over-ridden by editing the file formbuilder.css. FormBuilder forms have plenty of hooks to hang your CSS styles on, so you should be able to style to form to make it look pretty much however you want. Also please note the constructor parameters usePseudoFields and showDividers, which are specifically designed to give you extra/replacement elements for the purpose of CSS styling.
+
+
+13 - Feedback
+-------------
+
+FormBuilder is a work in progress. Any feedback, suggestion, comments, and bug reports are welcomed.
+
+You can contact me via my blog: f6design.com/journal
+
+Thanks and enjoy!
+
+Jonathan Nicol
+
+
+

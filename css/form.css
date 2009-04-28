@@ -1,0 +1,321 @@
+/*
+     ----------------------------------------------------------------
+     GBCF-V3 DEFAULT STYLE SHEET - MIKE CHERIM HTTP://GREEN-BEAST.COM
+     ----------------------------------------------------------------
+*/
+
+/* === form div and elements ======================================= */
+
+#form-div { 
+    font-family : "Helvetica Neue", helvetica, arial, sans-serif;
+    margin : 0;
+    color : #000;
+    line-height : 2em;
+}
+
+#form-div input.submitbtn {
+    margin-top: 1em;
+}
+
+#form-div h2 {
+    padding: 1em 0 0;
+}
+#form-div p.form-footer {
+    margin : -15px 2px 20px 5px;
+ }
+
+#form-div p.form-footer a { 
+    color : #000; 
+}
+
+#form-div p.form-footer a:hover,
+#form-div p.form-footer a:focus,
+#form-div p.form-footer a:active { 
+    color : #000; 
+    text-decoration : none; 
+}
+
+#form-div p.form-footer a:focus,
+#form-div p.form-footer a:active { 
+    background-color : #eee; 
+}
+
+
+/* === form div link styles (disabled)======================================== 
+
+#form-div a { 
+    color : #000; 
+}
+    
+#form-div a:hover,
+#form-div a:focus,
+#form-div a:active { 
+    color : #000; 
+    text-decoration : none; 
+}
+
+#form-div a:focus,
+#form-div a:active { 
+    background-color : #eee; 
+}
+*/
+
+/* === success and error message/results box ======================= */
+
+#form-div p.success,
+#form-div p.error,
+#form-div p.center { 
+    color : #fff;
+    /* color : #000; (lite colors option - uncomment to use) */
+    padding : 1px 4px; 
+    border : 1px solid #000; 
+    background-color : #000;
+    /* background-color : #d6e3ba; (lite colors option - uncomment to use) */
+    margin : 10px 3px;
+    text-align : center;
+}
+
+#form-div p.error { 
+    background-color : #bb0000; 
+    /* background-color : #edbaba; (lite colors option - uncomment to use) */
+}
+
+#form-div p.error a,
+#form-div p.success a {
+    color : #ffff7f;
+}
+
+#form-div p.center {
+    text-align : center;
+    background-color : #edbaba;
+    color : #000;
+    margin-top : -3px;
+    padding : 0px 4px; 
+}
+
+#form-div p.error a:hover,
+#form-div p.error a:focus,
+#form-div p.error a:active, 
+#form-div p.success a:hover,
+#form-div p.success a:focus,
+#form-div p.success a:active {
+    color : #eee;
+    background-color : #bb0000; 
+}
+
+#form-div p.success a:hover,
+#form-div p.success a:focus,
+#form-div p.success a:active {
+    background-color : #000; 
+}
+
+#form-div p.instructions {
+    font-size: 0.9em;
+    margin:0;
+}
+
+/* === structural form elements ==================================== */
+
+form#gbcf-form { }
+
+fieldset.main-set,
+fieldset.req-set,
+fieldset.opt-set { 
+    border : 1px solid #ccc;
+    padding : 5px;
+}
+
+
+/* === textural form elements ====================================== */
+
+#form-div legend { 
+    font-weight : bold;
+}
+
+#form-div legend span { }
+
+legend.main-legend { 
+    color : #777;
+    font-size : 110%;
+}
+
+legend.req-legend,
+legend.opt-legend { 
+    color : #777;
+}
+
+legend.main-legend span { }
+legend.main-legend { }
+
+legend.req-legend span { }
+legend.req-legend {
+    margin-left : -2px;
+}
+
+legend.opt-legend span { }
+legend.opt-legend { 
+    margin-left : -2px;
+}
+
+label.req-label, label.opt-label {
+    color : #000;
+    line-height:normal;
+}
+
+label.opt-label.check {
+    float : left;
+    padding : 0;
+    margin : 1px 4px;
+    cursor : pointer;
+}
+
+label.opt-label.main-label {
+    margin : 0;
+    font-weight : bold;
+}
+
+label.opt-label.main-label span {
+    font-weight : normal;
+    color : #666;
+}
+
+label.opt-label.main-label span.req,
+label span.req    {
+    font-weight : bold;
+    color : #c70000;
+}
+
+label.req-label.explain {
+    color : #666;
+    font-size : .8em;
+}
+
+label.req-label.explain:hover {
+    color : #000;
+}
+
+/* === control and interface form elements ========================= */
+/*
+    note: In this section you will see the hover/focus styles for the 
+    inputs. For example: input:hover, input:focus. You will also see 
+    these names applied as classes: input.hover, input,focus, for 
+    example. This is not done by mistake. Those classes are needed for 
+    the JavaScript focus script (files/focus.js) for IE 7 and older.
+*/
+
+input.text-long.address,
+input.text-long.address:hover,
+input.text-long.address:focus,
+input.text-long.address.hover,
+input.text-long.address.focus {
+    border-bottom : 0;
+    margin-bottom : 0;
+    padding-bottom : 2px;
+    border-bottom : 1px dotted #bbb;
+}
+
+input.text-long.address2,
+input.text-long.address2:hover,
+input.text-long.address2:focus,
+input.text-long.address2.hover,
+input.text-long.address2.focus {
+    border-top : 0;
+    margin-top : 0;
+    padding-top : 2px;
+    border-top : 1px dotted #bbb;
+}
+
+input.checkbox {
+    border : 1px solid #999;
+    width : .9em;
+    height : .9em;
+    padding : 0;
+    margin : 0;
+    cursor : pointer;
+}
+
+input.checkbox:hover,
+input.checkbox.hover,
+input.checkbox:focus,
+input.checkbox.focus {
+    border : 1px solid #666;
+}
+
+input.text-short, 
+input.text-med, 
+input.text-long,
+select.select,
+textarea.textarea {
+    font : 1em arial, helvetica, sans-serif;
+    border : 1px solid #999;
+    background-color : #fffffe;
+    cursor : text;
+    padding : 1px 2px;
+    margin: 0;
+}
+
+select.select {
+    padding : 1px 0;
+}
+
+input.text-short {
+    width: 100px;
+}
+
+input.text-med,
+select.select {
+    width : 250px;
+}
+
+input.text-long {
+    width : 300px;
+}
+
+textarea.textarea {
+    width : 440px;
+    height : 200px;
+}
+
+select.select, select.select option {
+    cursor : pointer;
+}
+
+input.text-short:focus,
+input.text-short.focus, 
+input.text-med:focus,
+input.text-med.focus,
+input.text-long:focus,
+input.text-long.focus,
+select.select:focus,
+input.select.focus,
+textarea.textarea:focus,
+textarea.textarea.focus {
+    border : 1px solid #666;
+    background-color : #ffe;
+}
+
+input.button { 
+    font : 1em arial, helvetica, sans-serif;
+    font-weight : bold;
+    margin-top : 18px;
+    padding : 1px 10px;
+    cursor : pointer;
+    float : left;
+    clear : both;
+    color : #000;
+}
+
+input.button:hover,
+input.button.hover,
+input.button:focus,
+input.button.focus {
+    color : #333;
+}
+
+/* if you have a conditionally served IE6 style sheet add this to it */
+* html input.button {
+    border : 1px solid #666;
+}
+
+
+/* EOF - Created by Mike Cherim @ http://green-beast.com =========== */
