@@ -30,11 +30,13 @@ The demo only supports files written in & out of Amazon S3.
 
 ## Installation ##
 
-1. Copy the htdocs folder to the root of a web server.
+1. Copy the contents of the repository to a directory in the web root, an alias, or a virtual host on your web server (you might need to edit some paths in the files depending on your directory structure).
 
 1. Open includes/config.php in a text editor and fill in the array elements with your values.
+ 
+3. Set your notification URL in the Flix Cloud Dashboard to the correct URL on your web server. Note that if your web server/firewall is not configured to allow incoming connections from www.flixcloud.com, you will not receive Flix Cloud notifications.
 
-1. Browse to the index.php file.
+1. Browse to the index.php file. Select a Recipe and an Input file, press Submit.
 
 ## LICENSE ##
 
