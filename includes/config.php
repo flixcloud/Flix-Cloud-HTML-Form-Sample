@@ -6,7 +6,7 @@ Fill in the values to the right of the arrows with your own info
 
 The demo only supports files written in & out of Amazon s3
 
-    flixcloud_api_key - Available in the Setting tab of your FC Dashboard
+    flixcloud_api_key - Available in the Settings tab of your FC Dashboard
     aws_access_key - Available in your AWS account info
     aws_secret_key - Available in your AWS account info
     ca_bundle_path -  Usually /usr/share/curl/curl-ca-bundle.crt but see your cURL docs

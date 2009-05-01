@@ -184,7 +184,7 @@ if($transcodeForm->formSuccess()){
 $job_body = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>
     <api-request>
         <api-key>'.$demo_config['flixcloud_api_key'].'</api-key>
-        <recipe-name>$recipe</recipe-name>
+        <recipe-name>'.$recipe.'</recipe-name>
         <file-locations>
             <input>
                 <url>s3://'.$demo_config['input_bucket'].'/'.$inputFile.'</url>
@@ -197,6 +197,7 @@ $job_body = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>
           </watermark>
         </file-locations>
     </api-request>';
+
 
     $header2[] = "Content-type: application/xml";
     $header2[] = "Accept: application/xml";
