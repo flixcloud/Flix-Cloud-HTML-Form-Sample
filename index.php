@@ -190,7 +190,7 @@ $job_body = '<?xml version=\'1.0\' encoding=\'UTF-8\'?>
                 <url>s3://'.$demo_config['input_bucket'].'/'.$inputFile.'</url>
             </input>
             <output>
-                <url>s3://'.$demo_config['output_bucket'].'/'.$outputFile.'</url>
+                <url>s3://'.$demo_config['output_bucket'].'/'.$inputFile.'-'.$outputFile.'</url>
           </output>
           <watermark>
               <url>s3://'.$demo_config['input_bucket'].'/'.$watermarkFile.'</url>

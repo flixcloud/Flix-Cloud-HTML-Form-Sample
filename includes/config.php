@@ -9,11 +9,11 @@ The demo only supports files written in & out of Amazon s3
     flixcloud_api_key - Available in the Settings tab of your FC Dashboard
     aws_access_key - Available in your AWS account info
     aws_secret_key - Available in your AWS account info
-    ca_bundle_path -  Usually /usr/share/curl/curl-ca-bundle.crt but see your cURL docs
+    ca_bundle_path -  Usually /usr/share/curl/curl-ca-bundle.crt but see your cURL docs. If you don't have cURL download it from http://curl.haxx.se.
     input_bucket - Just the bucket name, i.e., myinbucket',
     output_bucket - Just the bucket name, i.e., myoutbucket',
-    default_playback_video - Not required but if you want the Player to start with a video, enter the video name, for example video.flv
-    cloudfront_url - http://your_distro_name.cloudfront.net
+    default_playback_video - Not required but if you want the Player to start with a video, enter the name of a video in your bucket, for example video.flv.
+    cloudfront_url - for example, http://your_distro_name.cloudfront.net
     watermark_file - just the filename, i.e., watermark.png. Only required if your recipe uses a watermark
 
 */
